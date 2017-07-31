@@ -1,6 +1,6 @@
 # Bulls and Cows - Readme
 
-Bulls and Cows is simple game written in C++. The mail goal is to guess
+Bulls and Cows is simple game written in C++. The main goal is to guess
 hidden word (isograme).
 
                             .-.
@@ -12,11 +12,20 @@ hidden word (isograme).
                       ;### ((.;;.))  ##:
                 .=._.;    ,-*:;;:*-. *##:._.=,
                  >##;    *-')_@@_(`-*   ;###<
- ---------------`****------(o `` o)-----*****'---------------
+----------------`****------(o `` o)-----*****'---------------
 
 # Features
 
+# Installation
+
 # Maintainers
-- Damian Bomba @Tshayka
+
+<ul>
+<li>
+Damian Bomba
+<a href="https://github.com/Tshayka"> @Tshayka</a>
+</li>
+</ul>
 
 # License
+Licensed under the MIT license.

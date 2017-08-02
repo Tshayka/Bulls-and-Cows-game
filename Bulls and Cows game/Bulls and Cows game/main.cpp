@@ -17,6 +17,7 @@ void PlayGame();
 FText GetValidGuess();
 bool AskToPLayAgain();
 void PrintGameSummary();
+bool AskToChangeDifficulty();
 
 FBullCowGame BCGame; //instantiate a new game (BCGame.MyCurrentTry = 1, BCGame.MyMaxTries = 5)
 
@@ -36,7 +37,6 @@ int main()
 // plays until completion
 void PlayGame()
 {
-
 	if (BCGame.GetMyRound() <= 1) { BCGame.NewGame(); }
 
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
@@ -95,10 +95,28 @@ bool AskToPLayAgain()
 	return (Response[0] == 'y') || (Response[0] == 'Y');
 }
 
+bool AskToChangeDifficulty()
+{
+	std::cout << "Do you want to change difficulty (y/n)?";
+	FText Response = "";
+	std::getline(std::cin, Response);
+	return (Response[0] == 'y') || (Response[0] == 'Y');
+}
+
 void PrintGameSummary()
 {
 	BCGame.IncrementRound();
-	if (BCGame.IsGameWon()) { std::cout << "Well done - You are winner!\n"<< "Round " << BCGame.GetMyRound() << " is finished\n"; }
-	else { std::cout << "Better luck next time!\n"; }
+	if (BCGame.IsGameWon()) 
+	{
+		std::cout << "------------------------------------------------------------" << std::endl;
+		std::cout << "Well done - You are winner!" << std::endl;
+		std::cout << "Round " << BCGame.GetMyRound() << " is finished" << std::endl;
+		std::cout << "------------------------------------------------------------" << std::endl;
+	}
+	else 
+	{ 
+		std::cout << "Better luck next time!" << std::endl; 
+		std::cout << "------------------------------------------------------------" << std::endl;
+	}
 	BCGame.SetGameStatus();
 }

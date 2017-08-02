@@ -43,8 +43,6 @@ public:
 	bool SetGameStatus();
 	int32 IncrementRound();
 	int32 AskForDifficulty(bool);
-	// FString SetHiddenWord();
-
 
 private:
 	int32 MyCurrentTry;
@@ -54,7 +52,6 @@ private:
 	bool bGameIsWon;
 	bool bFirstGame;
 	
-
 	bool IsIsogram(FString) const;
 	bool IsLowerCase(FString) const;
 

@@ -2,6 +2,8 @@
 #include "FBullCowGame.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <vector>
 #include <map>
 #define TMap std::map
 
@@ -138,26 +140,59 @@ bool FBullCowGame::IsLowerCase(FString Word) const
 
 FText FBullCowGame::WordToGuess(int32 MyDifficulty)
 {
+	std::vector<FText> ThreeLetter;
+	std::vector<FText> FourLetter;
+	std::vector<FText> FiveLetter;
+	std::vector<FText> SixLetter;
+	std::vector<FText> SevenLetter;
+
+	std::fstream file;
+	file.open("Isograms.txt", std::ios::in);
+
+	if (!file.is_open())
+	{
+		std::cout << "File doesn't exist!";
+		exit(0);
+	}
+
+	FText line;
+	int32 Line_nr = 1;
+	FText word;
+
+	while (std::getline(file, line))
+	{
+		std::stringstream ss(line);
+
+			for (int i = 0; ss >> word; i++)
+			{
+				if (word.length() == 3) { ThreeLetter.push_back(word); }
+				if (word.length() == 4) { FourLetter.push_back(word); }
+				if (word.length() == 5) { FiveLetter.push_back(word); }
+				if (word.length() == 6) { SixLetter.push_back(word); }
+				if (word.length() == 7) { SevenLetter.push_back(word); }
+			}
+	}
+	file.close();
+
 	switch (MyDifficulty) {
 	case 3:
-		MyHiddenWord = "pla";
+		MyHiddenWord = ThreeLetter[3];
 		break;
 	case 4:
-		MyHiddenWord = "taki";
+		MyHiddenWord = FourLetter[1];
 		break;
 	case 5:
-		MyHiddenWord = "taki";
+		MyHiddenWord = FiveLetter[1];
 		break;
 	case 6:
-		MyHiddenWord = "taki";
+		MyHiddenWord = SixLetter[1];
 		break;
 	case 7:
-		MyHiddenWord = "taki";
+		MyHiddenWord = SevenLetter[1];
 		break;
 	}
 	return MyHiddenWord;
 }
-
 
 int32 FBullCowGame::AskForDifficulty(bool FirstGame)
 {

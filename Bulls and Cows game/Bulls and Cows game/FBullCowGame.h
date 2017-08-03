@@ -1,9 +1,9 @@
-/* The game logic */
-
+// The game logic
 
 #pragma once
 #include <string>
 
+// Namespace from Unreal Engine
 using FString = std::string;
 using int32 = int;
 

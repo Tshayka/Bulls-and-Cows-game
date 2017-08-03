@@ -1,6 +1,0 @@
-﻿  FBullCowGame.cpp
-c:\users\damian bomba\documents\github\bullsandcowsgame\bulls and cows game\bulls and cows game\fbullcowgame.cpp(176): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  main.cpp
-  Generating Code...
-  Bulls and Cows game.vcxproj -> C:\Users\Damian Bomba\Documents\GitHub\BullsAndCowsGame\Bulls and Cows game\Debug\Bulls and Cows game.exe
-  Bulls and Cows game.vcxproj -> C:\Users\Damian Bomba\Documents\GitHub\BullsAndCowsGame\Bulls and Cows game\Debug\Bulls and Cows game.pdb (Partial PDB)

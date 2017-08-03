@@ -9,10 +9,12 @@
 #include <map>
 #define TMap std::map
 
+// Namespace from Unreal Engine
 using int32 = int;
 using FText = std::string;
 
-FBullCowGame::FBullCowGame() // we can also put values and types into brackets  
+// For constructor we can also put values and types into brackets  
+FBullCowGame::FBullCowGame() 
 {
 	FirstGame();
 }
@@ -27,7 +29,7 @@ bool FBullCowGame::SetGameStatus() { return bFirstGame = false; } //Setter
 int32 FBullCowGame::IncrementRound() { return MyRound++; }
 
 int32 FBullCowGame::GetMaxTries() const {
-	TMap<int32, int32> WordLengthToMaxTries{ { 3,4 },{ 4,7 },{ 5,10 },{ 6,16 },{ 7,20 } };
+	TMap<int32, int32> WordLengthToMaxTries{ { 3,5 },{ 4,7 },{ 5,10 },{ 6,16 },{ 7,20 } };
 	return WordLengthToMaxTries[MyHiddenWord.length()];
 } //Getter
 
@@ -68,8 +70,6 @@ void FBullCowGame::NewGame()
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	
-	//MyDifficulty = AskForDifficulty(bFirstGame); ask for change if new one
-
 	const FString HIDDEN_WORD = WordToGuess(MyDifficulty);
 	MyHiddenWord = HIDDEN_WORD;
 
@@ -85,7 +85,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	else { return EGuessStatus::OK; }
 }
 
-  // recieves a VALID guess, increments turns, returns count
+ // recieves a VALID guess, increments turns, returns count
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
 	MyCurrentTry++;
@@ -116,7 +116,7 @@ bool FBullCowGame::IsIsogram(FString Word) const
 {
 	if (Word.length() <= 1) { return true; }
 	TMap<char, bool> LetterSeen;
-	for (auto Letter : Word) // Iteracja przez TMap
+	for (auto Letter : Word) // Iteration by TMap
 	{
 		Letter = tolower(Letter);
 		if (LetterSeen[Letter]) return false;
@@ -139,6 +139,7 @@ bool FBullCowGame::IsLowerCase(FString Word) const
 
 FText FBullCowGame::WordToGuess(int32 MyDifficulty)
 {
+	// Vectors with stored words
 	std::vector<FText> ThreeLetter;
 	std::vector<FText> FourLetter;
 	std::vector<FText> FiveLetter;
@@ -174,23 +175,29 @@ FText FBullCowGame::WordToGuess(int32 MyDifficulty)
 	file.close();
 
 	std::mt19937 randomGenerator(time(0));
+
+	// each one has it own range, because in dictionary is different amount of words
 	std::uniform_int_distribution<int> TheeLetterRoll(0, ThreeLetter.size());
+	std::uniform_int_distribution<int> FourLetterRoll(0, FourLetter.size());
+	std::uniform_int_distribution<int> FiveLetterRoll(0, FiveLetter.size());
+	std::uniform_int_distribution<int> SixLetterRoll(0, SixLetter.size());
+	std::uniform_int_distribution<int> SevenLetterRoll(0, SevenLetter.size());
 
 	switch (MyDifficulty) {
 	case 3:
 		MyHiddenWord = ThreeLetter[TheeLetterRoll(randomGenerator)];
 		break;
 	case 4:
-		MyHiddenWord = FourLetter[1];
+		MyHiddenWord = FourLetter[FourLetterRoll(randomGenerator)];
 		break;
 	case 5:
-		MyHiddenWord = FiveLetter[1];
+		MyHiddenWord = FiveLetter[FiveLetterRoll(randomGenerator)];
 		break;
 	case 6:
-		MyHiddenWord = SixLetter[1];
+		MyHiddenWord = SixLetter[SixLetterRoll(randomGenerator)];
 		break;
 	case 7:
-		MyHiddenWord = SevenLetter[1];
+		MyHiddenWord = SevenLetter[SevenLetterRoll(randomGenerator)];
 		break;
 	}
 	return MyHiddenWord;

@@ -3,15 +3,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <random>
+#include <ctime>
 #include <vector>
 #include <map>
 #define TMap std::map
 
 using int32 = int;
 using FText = std::string;
-
-//use mt19937 randomGenerator
-
 
 FBullCowGame::FBullCowGame() // we can also put values and types into brackets  
 {
@@ -174,9 +173,12 @@ FText FBullCowGame::WordToGuess(int32 MyDifficulty)
 	}
 	file.close();
 
+	std::mt19937 randomGenerator(time(0));
+	std::uniform_int_distribution<int> TheeLetterRoll(0, ThreeLetter.size());
+
 	switch (MyDifficulty) {
 	case 3:
-		MyHiddenWord = ThreeLetter[3];
+		MyHiddenWord = ThreeLetter[TheeLetterRoll(randomGenerator)];
 		break;
 	case 4:
 		MyHiddenWord = FourLetter[1];

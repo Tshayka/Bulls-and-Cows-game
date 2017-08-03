@@ -6,6 +6,8 @@ hidden word (isograme).
 # Features
 
 # Installation
+In game folder should be file called "Isograms.txt". If You want to add new words,
+you are free to edit it. Words are in groups but program check length of it anyway. 
 
 # Maintainers
 

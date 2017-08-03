@@ -65,7 +65,7 @@ FText GetValidGuess() //Not getter but function which takes 'cin'
 	do {
 		// get a guess from the player
 		int32 CurrentTry = BCGame.GetCurrentTry();
-		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() - CurrentTry + 1 << ". Enter your guess: ";
+		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() << ". Enter your guess: ";
 		std::getline(std::cin, Guess);
 
 		// Check status and give feedback

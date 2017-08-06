@@ -209,7 +209,20 @@ int32 FBullCowGame::AskForDifficulty(bool FirstGame)
 
 	if (FirstGame == true) {
 		std::cout << "What length of word do you choose? (3-7)\n";
-		do { std::cin >> Difficulty; } while (Difficulty < 3 || Difficulty > 7);
+		while (true)
+		{
+			std::cin >> Difficulty;
+			if (Difficulty == 3 || Difficulty == 4 || Difficulty == 5 || Difficulty == 6 || Difficulty == 7)
+			{
+				break;
+			}
+			else if (std::cin.fail() || Difficulty < 3 || Difficulty > 7)
+			{
+				std::cin.clear();
+				std::cin.ignore();
+				std::cout << "Incorrect entry. Try again: ";
+			}
+		}
 	}
 	else {};
 
@@ -218,3 +231,5 @@ int32 FBullCowGame::AskForDifficulty(bool FirstGame)
 
 // const - Funkcja, obiecuje, ¿e jeœli siê j¹ wywo³a na rzecz jakiegoœ obiektu, to nie bêdzie modyfikowaæ jego danych sk³adowych. 
 // Jest to wazne w sytuacjach, gdy zamierzamy w danej klasie definiowaæ sobie obiekty typu const
+
+
